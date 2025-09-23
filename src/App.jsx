@@ -2,7 +2,7 @@
 import './App.css'
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import AboutUs from './components/Aboutus';
 import Formals from './components/Formals';
@@ -22,25 +22,26 @@ function App() {
   
   return (
     <>
-    <Router basename="/S109">
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route index element={<AboutUs />} />
-          <Route path="home" element={<Home />} />
-          <Route path="about-us" element={<AboutUs />} />
-          <Route path="Formals" element={<Formals />} />
-          <Route path="Casuals" element={<Casuals />} />
-          <Route path="Streetwear" element={<Streetwear />} />
-          <Route path="Addons" element={<Addons />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="productpage" element={<ProductPage />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="payment" element={<Payment />} />
-          <Route path="orders" element={<Orders />} />
-        </Route>
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          {/* This is the corrected nested route structure */}
+          <Route path="/" element={<HomePage />}>
+            <Route index element={<AboutUs />} /> {/* This route will be the default for "/" */}
+            <Route path="home" element={<Home />} />
+            <Route path="about-us" element={<AboutUs />} />
+            <Route path="Formals" element={<Formals />} />
+            <Route path="Casuals" element={<Casuals />} />
+            <Route path="Streetwear" element={<Streetwear />} />
+            <Route path="Addons" element={<Addons />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="productpage" element={<ProductPage />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="payment" element={<Payment />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   )
 }

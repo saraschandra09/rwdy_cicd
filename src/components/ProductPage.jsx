@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";   // ✅ Add this
+import PropTypes from "prop-types";
 import { getProducts } from "../services/productService";
 import { addToCart } from "../services/cartService";
-import "./style.css";
 
 const ProductPage = ({ category }) => {
   const [products, setProducts] = useState([]);
@@ -29,29 +28,34 @@ const ProductPage = ({ category }) => {
   };
 
   return (
-    <div className="product-container">
-      <h2>
-        {category
-          ? category.charAt(0).toUpperCase() + category.slice(1)
-          : "All Products"}
-      </h2>
-      <div className="product-grid">
+    <div>
+      <div className="mb-4 flex items-end justify-between">
+        <h2 className="text-2xl font-semibold">
+          {category ? category.charAt(0).toUpperCase() + category.slice(1) : "All Products"}
+        </h2>
+      </div>
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.length > 0 ? (
           products.map((product) => (
-            <div key={product.id} className="product-card">
+            <div key={product.id} className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
               <img
                 src={`http://localhost:3001/api/products/images/${product.imagePath}`}
                 alt={product.name}
+                className="h-48 w-full object-cover"
               />
-              <h3>{product.name}</h3>
-              <p>Price: ${product.price}</p>
-              <button onClick={() => handleAddToCart(product)}>
-                Add to Cart
-              </button>
+              <div className="p-4 flex-1 flex flex-col">
+                <h3 className="text-base font-semibold line-clamp-2">{product.name}</h3>
+                <p className="mt-1 text-sm text-gray-600">${product.price}</p>
+                <div className="mt-auto pt-3">
+                  <button onClick={() => handleAddToCart(product)} className="w-full rounded-md bg-gray-900 text-white hover:bg-gray-800 px-4 py-2">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
             </div>
           ))
         ) : (
-          <p>No products available in this category.</p>
+          <p className="text-gray-600">No products available in this category.</p>
         )}
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AboutUs = () => {
   return (
     <div className="about-container">
-      <h2><i>RECLAIM INDIAN SUPERMACY</i></h2>
+      <h2 className="about-heading"><i>RECLAIM INDIAN SUPERMACY</i></h2>
 
       <div className="about-grid">
       <Link to="/Formals">
